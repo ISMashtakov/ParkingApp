@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomButton" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+
+        <item name="backgroundTint">@color/app_white</item>
+        <item name="background">@color/app_white</item>
+        <item name="android:textColor">@color/text_black</item>
+
+    </style>
+</resources>

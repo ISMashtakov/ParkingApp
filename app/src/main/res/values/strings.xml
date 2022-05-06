@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Parking</string>
+    <string name="EnterText">Войти</string>
+    <string name="logo_description">Logo</string>
 </resources>
