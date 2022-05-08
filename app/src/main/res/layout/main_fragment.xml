@@ -22,9 +22,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginTextField"
+        android:id="@+id/loginTextFieldLayout"
         style="@style/CustomTextField"
-        app:layout_constraintBottom_toTopOf="@+id/passwordTextField"
+        app:layout_constraintBottom_toTopOf="@+id/passwordTextFieldLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="32dp"
@@ -34,6 +34,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="TextContrastCheck"
@@ -43,7 +44,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordTextField"
+        android:id="@+id/passwordTextFieldLayout"
         style="@style/CustomTextField"
         app:layout_constraintBottom_toTopOf="@+id/enterButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +56,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="TextContrastCheck"
