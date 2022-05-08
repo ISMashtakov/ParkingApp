@@ -9,10 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import com.example.parking.R
-import com.google.android.material.textfield.TextInputLayout
-import java.security.Key
 
 class MainFragment : Fragment() {
 
@@ -31,9 +28,9 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        val enterButton = view?.findViewById(R.id.enterButton) as Button;
-        val loginTextField = view?.findViewById(R.id.loginTextField) as EditText;
-        val passwordTextField = view?.findViewById(R.id.passwordTextField) as EditText;
+        val enterButton = view?.findViewById(R.id.enterButton) as Button
+        val loginTextField = view?.findViewById(R.id.loginTextField) as EditText
+        val passwordTextField = view?.findViewById(R.id.passwordTextField) as EditText
 
         fun signIn(){
             viewModel.signIn(
@@ -44,7 +41,7 @@ class MainFragment : Fragment() {
 
         loginTextField.setOnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                passwordTextField.requestFocus();
+                passwordTextField.requestFocus()
             }
             true
         }
@@ -56,7 +53,7 @@ class MainFragment : Fragment() {
             true
         }
 
-        enterButton.setOnClickListener{signIn()};
+        enterButton.setOnClickListener{signIn()}
 
     }
 
