@@ -1,6 +1,5 @@
 package com.example.parking.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
@@ -9,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import com.example.parking.ParkingApp
 import com.example.parking.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
 
@@ -18,7 +17,7 @@ class LoginFragment : Fragment() {
         fun newInstance() = LoginFragment()
     }
 
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel by viewModel<LoginViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -27,8 +26,6 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this, LoginViewModelFactory(
-            activity?.application as ParkingApp))[LoginViewModel::class.java]
 
         val enterButton = view.findViewById(R.id.enterButton) as Button
         val loginTextField = view.findViewById(R.id.loginTextField) as EditText
