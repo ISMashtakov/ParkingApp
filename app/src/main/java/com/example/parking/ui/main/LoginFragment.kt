@@ -1,6 +1,7 @@
 package com.example.parking.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.example.parking.R
+import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -24,8 +26,18 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
+    fun subscribeForAuthentication(){
+        viewModel.runCoroutine {
+            viewModel.authentication.role.collect {
+                Log.e("ROLE", it.name)
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        subscribeForAuthentication()
 
         val enterButton = view.findViewById(R.id.enterButton) as Button
         val loginTextField = view.findViewById(R.id.loginTextField) as EditText

@@ -1,11 +1,14 @@
 package com.example.parking
 
 import android.app.Application
+import com.example.parking.data.auth.Authentication
+import com.example.parking.data.auth.authModule
 import com.example.parking.data.cars.carsModule
 import com.example.parking.ui.main.loginModule
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ParkingApp: Application() {
     lateinit var retrofit: Retrofit
-
+    val authentication : Authentication by inject()
     private fun setUpRetrofit() {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -25,7 +28,10 @@ class ParkingApp: Application() {
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor{ chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", Credentials.basic("admin", "password"))
+                    .addHeader(
+                        "Authorization",
+                        Credentials.basic(authentication.login, authentication.password)
+                    )
                     .build()
                 return@addInterceptor chain.proceed(request)
             }
@@ -45,7 +51,8 @@ class ParkingApp: Application() {
             androidContext(this@ParkingApp)
             modules(listOf(
                 loginModule,
-                carsModule
+                carsModule,
+                authModule
             ))
         }
     }

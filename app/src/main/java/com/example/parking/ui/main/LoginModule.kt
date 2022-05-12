@@ -6,7 +6,7 @@ import org.koin.dsl.module
 val loginModule = module {
     viewModel<LoginViewModel>{
         LoginViewModel(
-            carsApi = get()
+            authentication = get()
         )
     }
 }

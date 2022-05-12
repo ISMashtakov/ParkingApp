@@ -1,33 +1,34 @@
 package com.example.parking.ui.main
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.parking.data.cars.CarsApi
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
+import com.example.parking.data.auth.Authentication
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
-class LoginViewModel(private val carsApi: CarsApi) : ViewModel() {
+class LoginViewModel(
+    val authentication: Authentication
+    ) : ViewModel() {
 
-    private val compositeDisposable = CompositeDisposable()
+    private val _isLoading = MutableStateFlow<Boolean>(false)
+    val isLoading = _isLoading.asStateFlow()
 
-    override fun onCleared() {
-        compositeDisposable.clear()
-        super.onCleared()
+    private val viewModelJob = Job()
+    private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+    fun runCoroutine(coroutine: suspend () -> Unit){
+        viewModelScope.launch {
+            withContext(IO) {coroutine()}
+        }
     }
 
     fun signIn(login: String, password: String){
-        compositeDisposable.add(carsApi.getCars()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Log.e("sign", "All Good")
-            }, {
-                Log.e("sign", "All Bad" + it.message)
-            })
+        runCoroutine {
+            _isLoading.emit(true)
+            authentication.tryAuth(login, password)
+            _isLoading.emit(false)
+        }
 
-        )
     }
 }
