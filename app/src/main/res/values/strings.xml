@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Parking</string>
+    <string name="enter_text">Войти</string>
+    <string name="logo_description">Logo</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="login_error">Неправильный пароль или логин</string>
 </resources>

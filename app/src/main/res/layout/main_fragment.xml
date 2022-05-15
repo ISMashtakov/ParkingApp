@@ -5,16 +5,76 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment">
+    android:background="@color/app_yellow"
+    tools:context=".ui.login.LoginFragment">
 
-    <TextView
-        android:id="@+id/message"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MainFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="66dp"
+        android:contentDescription="@string/logo_description"
+        android:src="@drawable/park_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginTextFieldLayout"
+        style="@style/CustomTextField"
+        app:layout_constraintBottom_toTopOf="@+id/passwordTextFieldLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="27dp"
+        android:hint="@string/login"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="TextContrastCheck"
+            android:textCursorDrawable="@color/text_black"
+            android:singleLine = "true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordTextFieldLayout"
+        style="@style/CustomTextField"
+        app:layout_constraintBottom_toTopOf="@+id/enterButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="53dp"
+        android:hint="@string/password"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="TextContrastCheck"
+            android:textCursorDrawable="@color/text_black"
+            android:inputType="textPassword"
+            android:singleLine = "true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/enterButton"
+        style="@style/CustomButton"
+        android:layout_marginBottom="81dp"
+        android:text="@string/enter_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
