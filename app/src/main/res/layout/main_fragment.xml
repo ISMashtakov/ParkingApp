@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_yellow"
-    tools:context=".ui.main.LoginFragment">
+    tools:context=".ui.login.LoginFragment">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             tools:ignore="TextContrastCheck"
             android:textCursorDrawable="@color/text_black"
+            android:singleLine = "true"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -62,6 +63,7 @@
             tools:ignore="TextContrastCheck"
             android:textCursorDrawable="@color/text_black"
             android:inputType="textPassword"
+            android:singleLine = "true"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

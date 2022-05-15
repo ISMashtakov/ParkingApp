@@ -1,4 +1,4 @@
-package com.example.parking.ui.main
+package com.example.parking.ui.login
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

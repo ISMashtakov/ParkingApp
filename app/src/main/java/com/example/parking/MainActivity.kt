@@ -2,7 +2,7 @@ package com.example.parking
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.parking.ui.main.LoginFragment
+import com.example.parking.ui.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -4,7 +4,7 @@ import android.app.Application
 import com.example.parking.data.auth.Authentication
 import com.example.parking.data.auth.authModule
 import com.example.parking.data.cars.carsModule
-import com.example.parking.ui.main.loginModule
+import com.example.parking.ui.login.loginModule
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

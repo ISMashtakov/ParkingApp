@@ -1,14 +1,16 @@
-package com.example.parking.ui.main
+package com.example.parking.ui.login
 
 import androidx.lifecycle.ViewModel
 import com.example.parking.data.auth.Authentication
+import com.example.parking.data.auth.Role
 import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class LoginViewModel(
-    val authentication: Authentication
+    private val authentication: Authentication
     ) : ViewModel() {
 
     private val _isLoading = MutableStateFlow<Boolean>(false)
@@ -17,9 +19,12 @@ class LoginViewModel(
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun runCoroutine(coroutine: suspend () -> Unit){
+    private val _onAuth = MutableSharedFlow<Role>()
+    val onAuth = _onAuth.asSharedFlow()
+
+    fun runCoroutine( coroutine: suspend () -> Unit){
         viewModelScope.launch {
-            withContext(IO) {coroutine()}
+            coroutine()
         }
     }
 
@@ -28,6 +33,7 @@ class LoginViewModel(
             _isLoading.emit(true)
             authentication.tryAuth(login, password)
             _isLoading.emit(false)
+            _onAuth.emit(authentication.role)
         }
 
     }
