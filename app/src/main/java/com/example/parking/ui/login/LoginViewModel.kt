@@ -31,9 +31,9 @@ class LoginViewModel(
     fun signIn(login: String, password: String){
         runCoroutine {
             _isLoading.emit(true)
-            authentication.tryAuth(login, password)
+            val role = authentication.tryAuth(login, password)
             _isLoading.emit(false)
-            _onAuth.emit(authentication.role)
+            _onAuth.emit(role)
         }
 
     }

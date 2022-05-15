@@ -14,8 +14,8 @@ class Authentication(private val carsApi: CarsApi) {
     var role = Role.UNAUTHORIZED
         private set
     
-    suspend fun tryAuth(login: String, password: String){
-        return try {
+    suspend fun tryAuth(login: String, password: String): Role{
+        try {
             this.login = login
             this.password = password
             carsApi.getCarsAsync()
@@ -23,6 +23,8 @@ class Authentication(private val carsApi: CarsApi) {
         } catch (e: Exception) {
             role = Role.UNAUTHORIZED
         }
+        
+        return role
     }
 
 }
