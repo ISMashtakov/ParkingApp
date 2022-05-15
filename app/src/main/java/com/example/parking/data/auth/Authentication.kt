@@ -3,7 +3,7 @@ package com.example.parking.data.auth
 import com.example.parking.data.cars.CarsApi
 import java.lang.Exception
 
-enum class Role {UNAUTHORIZED, ADMIN, USER}
+enum class Role { UNAUTHORIZED, ADMIN, USER }
 
 class Authentication(private val carsApi: CarsApi) {
     var login = ""
@@ -13,8 +13,8 @@ class Authentication(private val carsApi: CarsApi) {
 
     var role = Role.UNAUTHORIZED
         private set
-    
-    suspend fun tryAuth(login: String, password: String): Role{
+
+    suspend fun tryAuth(login: String, password: String): Role {
         try {
             this.login = login
             this.password = password
@@ -23,7 +23,7 @@ class Authentication(private val carsApi: CarsApi) {
         } catch (e: Exception) {
             role = Role.UNAUTHORIZED
         }
-        
+
         return role
     }
 

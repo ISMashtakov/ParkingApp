@@ -12,10 +12,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.example.parking.R
 import com.example.parking.data.auth.Role
 import com.example.parking.ui.views.Backdrop
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -35,13 +37,13 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    private fun hideKeyboard(view: View){
+    private fun hideKeyboard(view: View) {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun subscribeOnAuth() {
-        viewModel.runCoroutine {
+        lifecycleScope.launch {
             viewModel.onAuth.collect {
                 when (it) {
                     Role.UNAUTHORIZED -> {
@@ -66,7 +68,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun subscribeOnIsLoading() {
-        viewModel.runCoroutine {
+        lifecycleScope.launch {
             viewModel.isLoading.collect {
                 if (it) {
                     backdrop.show()
