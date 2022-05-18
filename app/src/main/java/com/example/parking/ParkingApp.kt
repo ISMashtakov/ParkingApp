@@ -1,9 +1,12 @@
 package com.example.parking
 
 import android.app.Application
+import android.content.Context
 import com.example.parking.data.auth.Authentication
 import com.example.parking.data.dataModule
+import com.example.parking.general.generalModule
 import com.example.parking.ui.login.loginModule
+import com.example.parking.ui.user.userModule
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ParkingApp : Application() {
     lateinit var retrofit: Retrofit
     private val authentication: Authentication by inject()
+
     private fun setUpRetrofit() {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -51,7 +55,9 @@ class ParkingApp : Application() {
             modules(
                 listOf(
                     loginModule,
-                    dataModule
+                    userModule,
+                    dataModule,
+                    generalModule
                 )
             )
         }

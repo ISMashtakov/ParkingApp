@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.parking.R
+import com.example.parking.ui.user.reservation.UserReservationFragment
+import com.example.parking.ui.user.spots.UserSpotsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class UserFragment : Fragment() {
@@ -32,19 +34,19 @@ class UserFragment : Fragment() {
         val bottomNavigationView: BottomNavigationView = view.findViewById(R.id.user_bottom_navigation_view)
 
         childFragmentManager.beginTransaction()
-            .replace(R.id.user_menu_container, UserPark.newInstance())
+            .replace(R.id.user_menu_container, UserReservationFragment.newInstance())
             .commitNow()
 
         bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
-                R.id.parks_menu_item -> {
+                R.id.reservation_menu_item -> {
                     childFragmentManager.beginTransaction()
-                        .replace(R.id.user_menu_container, UserPark.newInstance())
+                        .replace(R.id.user_menu_container, UserReservationFragment.newInstance())
                         .commitNow()
                 }
-                R.id.locations_menu_item -> {
+                R.id.spots_menu_item -> {
                     childFragmentManager.beginTransaction()
-                        .replace(R.id.user_menu_container, UserLocations.newInstance())
+                        .replace(R.id.user_menu_container, UserSpotsFragment.newInstance())
                         .commitNow()
                 }
                 R.id.settings_menu_item -> {}
