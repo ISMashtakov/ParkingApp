@@ -13,4 +13,7 @@ val generalModule = module {
     factory <ParkingSpotsAdapter> {
         ParkingSpotsAdapter(get() as Context)
     }
+    factory <ReservationAdapter> {
+        ReservationAdapter(get() as Context)
+    }
 }

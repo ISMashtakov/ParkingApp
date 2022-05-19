@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.parking.ParkingApp
 import com.example.parking.data.auth.Authentication
 import com.example.parking.data.cars.CarsApi
+import com.example.parking.data.employees.EmployeesApi
 import com.example.parking.data.parking_spot.ParkingSpotsApi
 import com.example.parking.data.reservation.ReservationsApi
 
@@ -29,5 +30,10 @@ val dataModule = module {
     single<ParkingSpotsApi> {
         val retrofit = ((get() as Context).applicationContext as ParkingApp).retrofit
         retrofit.create(ParkingSpotsApi::class.java)
+    }
+
+    single<EmployeesApi> {
+        val retrofit = ((get() as Context).applicationContext as ParkingApp).retrofit
+        retrofit.create(EmployeesApi::class.java)
     }
 }

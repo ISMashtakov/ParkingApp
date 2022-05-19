@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parking.R
+import com.example.parking.data.parking_spot.ParkingSpot
+import com.example.parking.general.ClickListener
+import com.example.parking.ui.user.spot_card.SpotCardFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserReservationFragment : Fragment() {
@@ -28,9 +31,25 @@ class UserReservationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.spots_recycler_view)
+        val recyclerView: RecyclerView = view.findViewById(R.id.spotsRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = viewModel.parkingSpotsAdapter
+
+        viewModel.parkingSpotsAdapter.clickListener = object : ClickListener {
+            override fun onClick(spot: ParkingSpot) {
+                val data = Bundle()
+                data.putString("spotId", spot.id)
+                data.putInt("spotNumber", spot.parkingNumber)
+
+                val card = SpotCardFragment()
+                card.arguments = data
+
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.main_container, card, "Spot${spot.parkingNumber}")
+                    ?.addToBackStack("Spot${spot.parkingNumber}")
+                    ?.commit()
+            }
+        }
     }
 
 

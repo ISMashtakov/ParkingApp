@@ -9,4 +9,7 @@
     <string name="locations">Места</string>
     <string name="parking">Аренда</string>
     <string name="parking_place">Парковочное место №%1$d</string>
+    <string name="booking">Бронировать</string>
+    <string name="booking_name">Занял %1$s</string>
+    <string name="booking_date">%1$s - %2$s</string>
 </resources>

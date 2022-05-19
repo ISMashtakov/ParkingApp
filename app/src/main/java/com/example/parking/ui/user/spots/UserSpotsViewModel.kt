@@ -2,6 +2,6 @@ package com.example.parking.ui.user.spots
 
 import androidx.lifecycle.ViewModel
 
-class UserSpotsViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class UserSpotsViewModel(
+) : ViewModel() {
 }

@@ -1,5 +1,6 @@
 package com.example.parking.data.reservation
 
+import com.example.parking.data.employees.Employee
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
@@ -16,4 +17,7 @@ data class Reservation(
     val startTime: Date,
     @SerializedName("endTime")
     val endTime: Date,
+
+
+    var employee: Employee?
 )

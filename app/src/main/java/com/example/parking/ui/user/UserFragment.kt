@@ -42,12 +42,14 @@ class UserFragment : Fragment() {
                 R.id.reservation_menu_item -> {
                     childFragmentManager.beginTransaction()
                         .replace(R.id.user_menu_container, UserReservationFragment.newInstance())
-                        .commitNow()
+                        .addToBackStack(R.id.reservation_menu_item.toString())
+                        .commit()
                 }
                 R.id.spots_menu_item -> {
                     childFragmentManager.beginTransaction()
                         .replace(R.id.user_menu_container, UserSpotsFragment.newInstance())
-                        .commitNow()
+                        .addToBackStack(R.id.spots_menu_item.toString())
+                        .commit()
                 }
                 R.id.settings_menu_item -> {}
             }
