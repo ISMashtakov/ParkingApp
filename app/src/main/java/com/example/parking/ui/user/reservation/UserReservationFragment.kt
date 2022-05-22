@@ -31,16 +31,17 @@ class UserReservationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.supportFragmentManager?.setFragmentResultListener("filterData", this) { _, bundle ->
+        activity?.supportFragmentManager?.setFragmentResultListener(
+            "filterData",
+            this
+        ) { _, bundle ->
             viewModel.setFilterSettings(bundle)
         }
 
         return inflater.inflate(R.layout.user_reservation_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val filterButton: ImageButton =  view.findViewById(R.id.filterButton)
+    private fun SettingRecyclerView(view: View) {
         val recyclerView: RecyclerView = view.findViewById(R.id.spotsRecyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -61,8 +62,12 @@ class UserReservationFragment : Fragment() {
                     ?.commit()
             }
         }
+    }
 
-        filterButton.setOnClickListener{
+    private fun SubscribeOnFilter(view: View) {
+        val filterButton: ImageButton = view.findViewById(R.id.filterButton)
+
+        filterButton.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.main_container, ReservationsFilterFragment.newInstance(), "Filter")
                 ?.addToBackStack("Filter")
@@ -70,7 +75,7 @@ class UserReservationFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            viewModel.filterIsEnabled.collect{
+            viewModel.filterIsEnabled.collect {
                 filterButton.setImageDrawable(
                     if (it)
                         ResourcesCompat.getDrawable(resources, R.drawable.filter_activ, null)
@@ -81,5 +86,12 @@ class UserReservationFragment : Fragment() {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        SettingRecyclerView(view)
+
+        SubscribeOnFilter(view)
+
+    }
 }
