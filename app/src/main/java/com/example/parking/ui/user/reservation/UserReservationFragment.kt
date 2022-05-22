@@ -1,13 +1,13 @@
 package com.example.parking.ui.user.reservation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.fragment.app.setFragmentResultListener
+import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parking.R
@@ -15,6 +15,8 @@ import com.example.parking.ui.user.reservation.filter.ReservationsFilterFragment
 import com.example.parking.data.parking_spot.ParkingSpot
 import com.example.parking.general.ClickListener
 import com.example.parking.ui.user.spot_card.SpotCardFragment
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserReservationFragment : Fragment() {
@@ -30,10 +32,10 @@ class UserReservationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         activity?.supportFragmentManager?.setFragmentResultListener("filterData", this) { _, bundle ->
-            Log.e("DATA2", bundle.toString())
+            viewModel.setFilterSettings(bundle)
         }
 
-        return inflater.inflate(R.layout.user_park_fragment, container, false)
+        return inflater.inflate(R.layout.user_reservation_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,6 +67,17 @@ class UserReservationFragment : Fragment() {
                 ?.replace(R.id.main_container, ReservationsFilterFragment.newInstance(), "Filter")
                 ?.addToBackStack("Filter")
                 ?.commit()
+        }
+
+        lifecycleScope.launch {
+            viewModel.filterIsEnabled.collect{
+                filterButton.setImageDrawable(
+                    if (it)
+                        ResourcesCompat.getDrawable(resources, R.drawable.filter_activ, null)
+                    else
+                        ResourcesCompat.getDrawable(resources, R.drawable.filter, null)
+                )
+            }
         }
     }
 
