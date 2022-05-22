@@ -1,6 +1,7 @@
 package com.example.parking.ui.user
 
 import com.example.parking.ui.user.reservation.UserReservationViewModel
+import com.example.parking.ui.user.reservation.filter.ReservationsFilterViewModel
 import com.example.parking.ui.user.spot_card.SpotCardViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -18,6 +19,11 @@ val userModule = module {
             reservationAdapter = get(),
             reservationsApi = get(),
             employeesApi = get()
+        )
+    }
+
+    viewModel<ReservationsFilterViewModel> {
+        ReservationsFilterViewModel(
         )
     }
 }

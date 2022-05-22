@@ -1,13 +1,17 @@
 package com.example.parking.ui.user.reservation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parking.R
+import com.example.parking.ui.user.reservation.filter.ReservationsFilterFragment
 import com.example.parking.data.parking_spot.ParkingSpot
 import com.example.parking.general.ClickListener
 import com.example.parking.ui.user.spot_card.SpotCardFragment
@@ -25,13 +29,18 @@ class UserReservationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.supportFragmentManager?.setFragmentResultListener("filterData", this) { _, bundle ->
+            Log.e("DATA2", bundle.toString())
+        }
+
         return inflater.inflate(R.layout.user_park_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val filterButton: ImageButton =  view.findViewById(R.id.filterButton)
         val recyclerView: RecyclerView = view.findViewById(R.id.spotsRecyclerView)
+
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = viewModel.parkingSpotsAdapter
 
@@ -49,6 +58,13 @@ class UserReservationFragment : Fragment() {
                     ?.addToBackStack("Spot${spot.parkingNumber}")
                     ?.commit()
             }
+        }
+
+        filterButton.setOnClickListener{
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.main_container, ReservationsFilterFragment.newInstance(), "Filter")
+                ?.addToBackStack("Filter")
+                ?.commit()
         }
     }
 

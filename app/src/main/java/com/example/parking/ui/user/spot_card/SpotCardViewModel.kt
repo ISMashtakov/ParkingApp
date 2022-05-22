@@ -22,7 +22,7 @@ class SpotCardViewModel(
 
     private fun updateReservations(){
         viewModelScope.launch {
-            val reservations = reservationsApi.getReservationsAsync()
+            val reservations = reservationsApi.getReservationsAsync().sortedBy { it.startTime }
             reservations.forEach{
                 it.employee = employeesApi.getEmployeeAsync(it.employeeId)[0]
             }
