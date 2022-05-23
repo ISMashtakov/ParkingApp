@@ -8,8 +8,4 @@
         android:icon="@drawable/car"
         android:enabled="true"
         android:title="@string/locations" />
-    <item android:id="@+id/settings_menu_item"
-        android:icon="@drawable/settings"
-        android:enabled="true"
-        android:title="@string/settings" />
 </menu>

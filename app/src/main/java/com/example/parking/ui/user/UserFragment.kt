@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import com.example.parking.R
 import com.example.parking.ui.user.reservation.UserReservationFragment
 import com.example.parking.ui.user.spots.UserSpotsFragment
+import com.example.parking.ui.user.spots.UserSpotsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserFragment : Fragment() {
 
@@ -17,7 +19,9 @@ class UserFragment : Fragment() {
         fun newInstance() = UserFragment()
     }
 
-    private lateinit var viewModel: UserViewModel
+    private val viewModel by viewModel<UserViewModel>()
+    private val userReservationFragment =UserReservationFragment.newInstance()
+    private val userSpotsFragment = UserSpotsFragment.newInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,29 +33,29 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
         val bottomNavigationView: BottomNavigationView = view.findViewById(R.id.user_bottom_navigation_view)
 
-        childFragmentManager.beginTransaction()
-            .replace(R.id.user_menu_container, UserReservationFragment.newInstance())
-            .commitNow()
+        if (!viewModel.isLoaded) {
+            childFragmentManager.beginTransaction()
+                .replace(R.id.user_menu_container, userReservationFragment)
+                .commitNow()
+            viewModel.isLoaded = true
+        }
 
         bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.reservation_menu_item -> {
                     childFragmentManager.beginTransaction()
-                        .replace(R.id.user_menu_container, UserReservationFragment.newInstance())
+                        .replace(R.id.user_menu_container, userReservationFragment)
                         .addToBackStack(R.id.reservation_menu_item.toString())
                         .commit()
                 }
                 R.id.spots_menu_item -> {
                     childFragmentManager.beginTransaction()
-                        .replace(R.id.user_menu_container, UserSpotsFragment.newInstance())
+                        .replace(R.id.user_menu_container, userSpotsFragment)
                         .addToBackStack(R.id.spots_menu_item.toString())
                         .commit()
                 }
-                R.id.settings_menu_item -> {}
             }
             true
         }
