@@ -1,6 +1,5 @@
 package com.example.parking.ui.user
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import com.example.parking.R
 import com.example.parking.ui.user.reservation.UserReservationFragment
 import com.example.parking.ui.user.spots.UserSpotsFragment
-import com.example.parking.ui.user.spots.UserSpotsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,10 +48,10 @@ class UserFragment : Fragment() {
                         .addToBackStack(R.id.reservation_menu_item.toString())
                         .commit()
                 }
-                R.id.spots_menu_item -> {
+                R.id.cars_menu_item -> {
                     childFragmentManager.beginTransaction()
                         .replace(R.id.user_menu_container, userSpotsFragment)
-                        .addToBackStack(R.id.spots_menu_item.toString())
+                        .addToBackStack(R.id.cars_menu_item.toString())
                         .commit()
                 }
             }

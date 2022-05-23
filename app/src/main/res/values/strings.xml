@@ -22,4 +22,6 @@
     <string name="start_reservation">Бронирование</string>
     <string name="end_reservation">Освобождение</string>
     <string name="booking_complete">Забронировать</string>
+    <string name="people">Люди</string>
+    <string name="cars">Машины</string>
 </resources>
