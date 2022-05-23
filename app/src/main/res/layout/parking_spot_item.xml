@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:background="@drawable/parking_place_item_shape">
+        android:background="@drawable/item_shape">
 
         <TextView
             android:id="@+id/name"

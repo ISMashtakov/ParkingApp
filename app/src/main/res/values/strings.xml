@@ -28,4 +28,13 @@
     <string name="spot_number">Номер парковочного места</string>
     <string name="create">Создать</string>
     <string name="created">Создано</string>
+    <string name="model">Модель:</string>
+    <string name="length">Длина:</string>
+    <string name="weight">Вес:</string>
+    <string name="weight_value">%1$dф</string>
+    <string name="length_value">%1$dд</string>
+    <string name="car_number">Номер</string>
+    <string name="model2">Модель</string>
+    <string name="length2">Длина</string>
+    <string name="weight2">Вес</string>
 </resources>
