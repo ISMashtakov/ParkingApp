@@ -24,4 +24,8 @@
     <string name="booking_complete">Забронировать</string>
     <string name="people">Люди</string>
     <string name="cars">Машины</string>
+    <string name="spot_id">ID места</string>
+    <string name="spot_number">Номер парковочного места</string>
+    <string name="create">Создать</string>
+    <string name="created">Создано</string>
 </resources>

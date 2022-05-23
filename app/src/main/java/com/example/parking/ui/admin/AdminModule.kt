@@ -1,6 +1,7 @@
 package com.example.parking.ui.admin
 
 import com.example.parking.ui.admin.reservation.AdminReservationViewModel
+import com.example.parking.ui.admin.reservation.create.ReservationCreateViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -14,6 +15,12 @@ val adminModule = module {
         AdminReservationViewModel(
             parkingSpotsAdapter = get(),
             parkingSpotsApi = get()
+        )
+    }
+
+    viewModel<ReservationCreateViewModel> {
+        ReservationCreateViewModel(
+            spotsApi = get()
         )
     }
 
