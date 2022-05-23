@@ -20,8 +20,7 @@ class SpotCardViewModel(
 
     private fun updateReservations(){
         viewModelScope.launch {
-            val reservations = reservationRepository.getAllReservations()
-            reservationAdapter.reservations = listOf(reservations[0], reservations[0], reservations[0], reservations[0])
+            reservationAdapter.reservations = reservationRepository.getAllReservations()
         }
     }
 }
