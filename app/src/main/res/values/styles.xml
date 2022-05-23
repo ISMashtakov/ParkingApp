@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/app_yellow</item>
+    </style>
+
     <style name="CustomButton" parent="TextAppearance.AppCompat">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">48dp</item>
@@ -23,11 +28,11 @@
         <item name="android:layout_height">60dp</item>
         <item name="android:layout_width">0dp</item>
 
-        <item name="boxStrokeColor">@color/text_black</item>
+        <item name="boxStrokeColor">@color/text_color_selector</item>
         <item name="boxBackgroundColor">@color/app_white</item>
-        <item name="hintTextColor">@color/text_black</item>
-        <item name="counterTextColor">@color/text_black</item>
-        <item name="android:textColorHint">@color/text_black</item>
+        <item name="hintTextColor">@color/text_color_selector</item>
+        <item name="counterTextColor">@color/text_color_selector</item>
+        <item name="android:textColorHint">@color/text_color_selector</item>
     </style>
 
 </resources>

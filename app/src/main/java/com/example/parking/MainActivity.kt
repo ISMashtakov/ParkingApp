@@ -1,8 +1,10 @@
 package com.example.parking
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.parking.ui.login.LoginFragment
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.example.parking.ui.user.UserFragment
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,8 +13,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, LoginFragment.newInstance())
+                    .replace(R.id.main_container, UserFragment.newInstance())
                     .commitNow()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 }

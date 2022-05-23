@@ -5,4 +5,21 @@
     <string name="password">Пароль</string>
     <string name="login">Логин</string>
     <string name="login_error">Неправильный пароль или логин</string>
+    <string name="settings">Настройки</string>
+    <string name="locations">Места</string>
+    <string name="parking">Аренда</string>
+    <string name="parking_place">Парковочное место №%1$d</string>
+    <string name="booking">Бронировать</string>
+    <string name="booking_name">Занял %1$s</string>
+    <string name="booking_date">%1$s - %2$s</string>
+    <string name="show_only_free">Показывать только свободные</string>
+    <string name="date">Дата</string>
+    <string name="start_date">Начало:</string>
+    <string name="time">Время</string>
+    <string name="end_date">Конец:</string>
+    <string name="driver_id">ID Водителя</string>
+    <string name="car_id">ID Автомобиля</string>
+    <string name="start_reservation">Бронирование</string>
+    <string name="end_reservation">Освобождение</string>
+    <string name="booking_complete">Забронировать</string>
 </resources>

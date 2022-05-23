@@ -3,7 +3,10 @@ package com.example.parking
 import android.app.Application
 import com.example.parking.data.auth.Authentication
 import com.example.parking.data.dataModule
+import com.example.parking.general.generalModule
 import com.example.parking.ui.login.loginModule
+import com.example.parking.ui.user.userModule
+import com.google.gson.*
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,10 +18,16 @@ import org.koin.core.logger.Level
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Type
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class ParkingApp : Application() {
     lateinit var retrofit: Retrofit
     private val authentication: Authentication by inject()
+
     private fun setUpRetrofit() {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -36,10 +45,27 @@ class ParkingApp : Application() {
             }
             .build()
 
+        val gson = GsonBuilder()
+            .registerTypeAdapter(Date::class.java, object : JsonDeserializer<Date> {
+                override fun deserialize(
+                    json: JsonElement?,
+                    typeOfT: Type?,
+                    context: JsonDeserializationContext?
+                ): Date {
+                    val date: String = json?.asString ?: throw JsonSyntaxException("Null instead date")
+
+                    val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S", Locale.US)
+                    format.timeZone = TimeZone.getTimeZone("GMT")
+
+                    return format.parse(date) ?: throw JsonSyntaxException("Null instead date")
+                }
+            })
+            .create()
+
         retrofit = Retrofit.Builder()
             .baseUrl("http://192.168.0.12:8080")
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
@@ -51,7 +77,9 @@ class ParkingApp : Application() {
             modules(
                 listOf(
                     loginModule,
-                    dataModule
+                    userModule,
+                    dataModule,
+                    generalModule
                 )
             )
         }
