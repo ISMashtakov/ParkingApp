@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.parking.data.auth.Authentication
 import com.example.parking.data.dataModule
 import com.example.parking.general.generalModule
+import com.example.parking.ui.admin.adminModule
 import com.example.parking.ui.login.loginModule
 import com.example.parking.ui.user.userModule
 import com.google.gson.*
@@ -78,6 +79,7 @@ class ParkingApp : Application() {
                 listOf(
                     loginModule,
                     userModule,
+                    adminModule,
                     dataModule,
                     generalModule
                 )

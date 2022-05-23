@@ -6,12 +6,12 @@ import java.lang.Exception
 enum class Role { UNAUTHORIZED, ADMIN, USER }
 
 class Authentication(private val carsApi: CarsApi) {
-    var login = "user"
+    var login = "admin"
         private set
     var password = "password"
         private set
 
-    var role = Role.USER
+    var role = Role.ADMIN
         private set
 
     suspend fun tryAuth(login: String, password: String): Role {

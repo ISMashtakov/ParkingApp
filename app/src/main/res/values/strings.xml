@@ -22,4 +22,20 @@
     <string name="start_reservation">Бронирование</string>
     <string name="end_reservation">Освобождение</string>
     <string name="booking_complete">Забронировать</string>
+    <string name="people">Люди</string>
+    <string name="cars">Машины</string>
+    <string name="spot_id">ID места</string>
+    <string name="spot_number">Номер парковочного места</string>
+    <string name="create">Создать</string>
+    <string name="created">Создано</string>
+    <string name="model">Модель:</string>
+    <string name="length">Длина:</string>
+    <string name="weight">Вес:</string>
+    <string name="weight_value">%1$dф</string>
+    <string name="length_value">%1$dд</string>
+    <string name="car_number">Номер</string>
+    <string name="model2">Модель</string>
+    <string name="length2">Длина</string>
+    <string name="weight2">Вес</string>
+    <string name="name">Имя</string>
 </resources>

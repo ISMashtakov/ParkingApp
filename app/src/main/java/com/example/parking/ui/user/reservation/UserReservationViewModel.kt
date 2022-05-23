@@ -27,6 +27,10 @@ open class UserReservationViewModel(
     val filterIsEnabled = filterIsEnabledMutable.asStateFlow()
 
     init {
+        updateSpots()
+    }
+
+    fun updateSpots(){
         viewModelScope.launch {
             try {
                 spots = parkingSpotsApi.getSpotsAsync()
