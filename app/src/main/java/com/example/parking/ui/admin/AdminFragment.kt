@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.parking.R
 import com.example.parking.ui.admin.cars.CarsFragment
+import com.example.parking.ui.admin.employees.EmployeesFragment
 import com.example.parking.ui.admin.reservation.AdminReservationFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,6 +21,7 @@ class AdminFragment : Fragment() {
     private val viewModel by viewModel<AdminViewModel>();
     private val adminReservationFragment = AdminReservationFragment.newInstance()
     private val carsFragment = CarsFragment.newInstance()
+    private val employeesFragment = EmployeesFragment.newInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,10 +57,10 @@ class AdminFragment : Fragment() {
                         .commit()
                 }
                 R.id.people_menu_item -> {
-//                    childFragmentManager.beginTransaction()
-//                        .replace(R.id.admin_menu_container, userSpotsFragment)
-//                        .addToBackStack(R.id.people_menu_item.toString())
-//                        .commit()
+                    childFragmentManager.beginTransaction()
+                        .replace(R.id.admin_menu_container, employeesFragment)
+                        .addToBackStack(R.id.people_menu_item.toString())
+                        .commit()
                 }
             }
             true

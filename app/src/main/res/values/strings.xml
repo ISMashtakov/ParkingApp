@@ -37,4 +37,5 @@
     <string name="model2">Модель</string>
     <string name="length2">Длина</string>
     <string name="weight2">Вес</string>
+    <string name="name">Имя</string>
 </resources>

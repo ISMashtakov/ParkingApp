@@ -2,6 +2,8 @@ package com.example.parking.ui.admin
 
 import com.example.parking.ui.admin.cars.CarsViewModel
 import com.example.parking.ui.admin.cars.create.CarsCreateViewModel
+import com.example.parking.ui.admin.employees.EmployeesViewModel
+import com.example.parking.ui.admin.employees.create.EmployeeCreateViewModel
 import com.example.parking.ui.admin.reservation.AdminReservationViewModel
 import com.example.parking.ui.admin.reservation.create.ReservationCreateViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -39,4 +41,16 @@ val adminModule = module {
         )
     }
 
+    viewModel<EmployeesViewModel> {
+        EmployeesViewModel(
+            employeesAdapter = get(),
+            employeesApi = get()
+        )
+    }
+
+    viewModel<EmployeeCreateViewModel> {
+        EmployeeCreateViewModel(
+            employeesApi = get()
+        )
+    }
 }

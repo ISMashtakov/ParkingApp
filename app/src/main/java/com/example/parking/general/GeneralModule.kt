@@ -16,4 +16,8 @@ val generalModule = module {
     factory <CarsAdapter> {
         CarsAdapter(get() as Context)
     }
+
+    factory <EmployeesAdapter> {
+        EmployeesAdapter()
+    }
 }
