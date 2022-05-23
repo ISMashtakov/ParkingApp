@@ -38,7 +38,7 @@ class UserSpotsFragment : Fragment() {
             viewModel.setFilterSettings(bundle)
         }
 
-        return inflater.inflate(R.layout.user_spots_fragment, container, false)
+        return inflater.inflate(R.layout.user_reservation_fragment, container, false)
     }
 
     private fun SettingRecyclerView(view: View) {

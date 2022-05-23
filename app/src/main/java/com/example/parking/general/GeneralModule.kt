@@ -10,7 +10,7 @@ import com.example.parking.data.reservation.ReservationsApi
 import org.koin.dsl.module
 
 val generalModule = module {
-    single <ParkingSpotsAdapter> {
+    factory <ParkingSpotsAdapter> {
         ParkingSpotsAdapter(get() as Context)
     }
 

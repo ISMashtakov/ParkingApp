@@ -1,6 +1,5 @@
 package com.example.parking.ui.user.spots
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.parking.data.parking_spot.ParkingSpotsApi
 import com.example.parking.data.reservation.ReservationRepository
@@ -16,14 +15,10 @@ class UserSpotsViewModel(
 ) : UserReservationViewModel(parkingSpotsAdapter, parkingSpotsApi) {
 
     init {
-        Log.e("Data", "Hello")
         viewModelScope.launch {
             try {
-                Log.e("Data", "start")
                 spots = reservationRepository.getSpotsForCurrentUser()
-                Log.e("Data", spots.count().toString())
             } catch (ex: Exception) {
-                Log.e("Data", ex.toString())
             }
         }
     }
