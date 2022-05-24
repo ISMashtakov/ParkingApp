@@ -1,6 +1,5 @@
 package com.example.parking.ui.admin.reservation.create
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,7 +31,7 @@ class ReservationCreateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.reservation_create_fragment, container, false)
+        return inflater.inflate(R.layout.spot_create_fragment, container, false)
     }
 
     private fun subscribeOnBackButton(view: View){

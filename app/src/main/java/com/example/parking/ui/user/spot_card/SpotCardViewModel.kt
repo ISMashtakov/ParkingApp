@@ -20,7 +20,9 @@ class SpotCardViewModel(
 
     private fun updateReservations(){
         viewModelScope.launch {
-            reservationAdapter.reservations = reservationRepository.getAllReservations()
+            reservationAdapter.reservations = reservationRepository.getAllReservations().filter {
+                it.parkingSpotId == spotId
+            }
         }
     }
 }

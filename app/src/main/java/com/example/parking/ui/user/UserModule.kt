@@ -43,7 +43,9 @@ val userModule = module {
 
     viewModel<ReservationViewModel> {
         ReservationViewModel(
-
+            carsApi = get(),
+            employeesApi = get(),
+            reservationsApi = get()
         )
     }
 }

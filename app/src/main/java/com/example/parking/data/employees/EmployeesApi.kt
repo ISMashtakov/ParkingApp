@@ -1,14 +1,11 @@
 package com.example.parking.data.employees
 
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface EmployeesApi {
 
-    @GET("./employees/")
-    suspend fun getEmployeeAsync(@Query("id") id: String): List<Employee>
+    @GET("employees/{id}")
+    suspend fun getEmployeeAsync(@Path("id") id: String): Employee
 
     @GET("./employees")
     suspend fun getEmployeesAsync(): List<Employee>

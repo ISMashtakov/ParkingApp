@@ -20,20 +20,92 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0">
 
-        <!--        SpotNumber-->
+        <!--        Driver id-->
         <TextView
-            android:id="@+id/spotNumberTextView"
+            android:id="@+id/driverIdTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/spot_number"
+            android:text="@string/driver_id"
             android:textColor="@color/text_black"
-            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/spotNumberTextInputLayout"
+            android:id="@+id/driverTextInputLayout"
+            style="@style/CustomAutoComplete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:hint=""
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/driverIdTextView">
+
+            <AutoCompleteTextView
+                android:id="@+id/driverAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint=""
+                android:textSize="14sp"
+                android:inputType=""
+                android:textColorHint="@color/text_black"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--        Car id-->
+        <TextView
+            android:id="@+id/carTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/car_id"
+            android:textColor="@color/text_black"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/driverTextInputLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/carTextInputLayout"
+            style="@style/CustomAutoComplete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:hint=""
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carTextView">
+
+            <AutoCompleteTextView
+                android:id="@+id/carAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint=""
+                android:textSize="14sp"
+                android:inputType=""
+                android:textColorHint="@color/text_black"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--            StartDateInput-->
+        <TextView
+            android:id="@+id/startTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/start_reservation"
+            android:textColor="@color/text_color_selector"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carTextInputLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/startTextDate"
             style="@style/CustomTextField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -42,15 +114,51 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spotNumberTextView">
+            app:layout_constraintTop_toBottomOf="@+id/startTextView">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/spotNumberTextInput"
+                android:id="@+id/startDateInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:inputType=""
                 android:textColorHint="@color/text_black"
-                android:inputType="number"
-                tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+                android:textSize="14sp"
+                tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--            EndDateInput-->
+        <TextView
+            android:id="@+id/endTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/end_reservation"
+            android:textColor="@color/text_color_selector"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/startTextDate" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/endTextDate"
+            style="@style/CustomTextField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:hint=""
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endTextView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/endDateInput"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:inputType=""
+                android:textColorHint="@color/text_black"
+                android:textSize="14sp"
+                tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,13 +188,25 @@
         tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/createButton"
+        android:id="@+id/bookingButton"
         style="@style/CustomButton"
         android:layout_marginBottom="40dp"
-        android:text="@string/create"
+        android:text="@string/booking_complete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="@color/app_white"/>
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/parking_place"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

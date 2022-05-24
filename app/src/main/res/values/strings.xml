@@ -17,8 +17,8 @@
     <string name="start_date">Начало:</string>
     <string name="time">Время</string>
     <string name="end_date">Конец:</string>
-    <string name="driver_id">ID Водителя</string>
-    <string name="car_id">ID Автомобиля</string>
+    <string name="driver_id">Водитель</string>
+    <string name="car_id">Автомобиль</string>
     <string name="start_reservation">Бронирование</string>
     <string name="end_reservation">Освобождение</string>
     <string name="booking_complete">Забронировать</string>
@@ -38,4 +38,5 @@
     <string name="length2">Длина</string>
     <string name="weight2">Вес</string>
     <string name="name">Имя</string>
+    <string name="not_all_fields_filled">Не все поля заполнены</string>
 </resources>

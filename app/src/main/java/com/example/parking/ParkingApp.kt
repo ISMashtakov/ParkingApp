@@ -1,6 +1,7 @@
 package com.example.parking
 
 import android.app.Application
+import android.util.JsonWriter
 import com.example.parking.data.auth.Authentication
 import com.example.parking.data.dataModule
 import com.example.parking.general.generalModule
@@ -46,6 +47,8 @@ class ParkingApp : Application() {
             }
             .build()
 
+
+
         val gson = GsonBuilder()
             .registerTypeAdapter(Date::class.java, object : JsonDeserializer<Date> {
                 override fun deserialize(
@@ -53,13 +56,34 @@ class ParkingApp : Application() {
                     typeOfT: Type?,
                     context: JsonDeserializationContext?
                 ): Date {
-                    val date: String = json?.asString ?: throw JsonSyntaxException("Null instead date")
-
                     val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S", Locale.US)
                     format.timeZone = TimeZone.getTimeZone("GMT")
-
-                    return format.parse(date) ?: throw JsonSyntaxException("Null instead date")
+                    val format2 = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
+                    format2.timeZone = TimeZone.getTimeZone("GMT")
+                    val date: String = json?.asString ?: throw JsonSyntaxException("Null instead date")
+                    try {
+                        return format.parse(date)!!
+                    }
+                    catch (ex: Exception){
+                        return format2.parse(date)!!
+                    }
                 }
+            })
+            .registerTypeAdapter(Date::class.java, object : JsonSerializer<Date> {
+                override fun serialize(
+                    src: Date?,
+                    typeOfSrc: Type?,
+                    context: JsonSerializationContext?
+                ): JsonElement {
+                    if (src == null){
+                        throw JsonSyntaxException("Can't convert date = null to json")
+                    }
+                    val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.US)
+                    format.timeZone = TimeZone.getTimeZone("GMT")
+
+                    return JsonPrimitive(format.format(src))
+                }
+
             })
             .create()
 

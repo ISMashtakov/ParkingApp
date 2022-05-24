@@ -15,7 +15,7 @@ class ReservationRepository(
     suspend fun getAllReservations(): List<Reservation> {
         val reservations = reservationsApi.getReservationsAsync().sortedBy { it.startTime }
         reservations.forEach {
-            it.employee = employeesApi.getEmployeeAsync(it.employeeId)[0]
+            it.employee = employeesApi.getEmployeeAsync(it.employeeId)
         }
         return reservations
     }

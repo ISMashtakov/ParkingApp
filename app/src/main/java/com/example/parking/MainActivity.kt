@@ -3,7 +3,7 @@ package com.example.parking
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.parking.ui.admin.AdminFragment
+import com.example.parking.ui.user.UserFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, AdminFragment.newInstance())
+                    .replace(R.id.main_container, UserFragment.newInstance())
                     .commitNow()
         }
     }
