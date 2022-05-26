@@ -23,6 +23,10 @@ class DateTests {
         val formatString = "yyyy-MM-dd'T'HH:mm:ss.S"
         val simpleDateFormat = SimpleDateFormat(formatString)
         val simpleLocalDateFormat = DateTimeFormatter.ofPattern(formatString)
-        assertEquals(simpleLocalDateFormat.format(localDateTime), simpleDateFormat.format(date))
+        assertEquals(
+            simpleLocalDateFormat.format(localDateTime),
+            simpleDateFormat.format(date),
+            "localDateTime converted to date wrong"
+        )
     }
 }
